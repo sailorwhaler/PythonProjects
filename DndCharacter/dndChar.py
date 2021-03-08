@@ -1,18 +1,18 @@
 import random
 
+def multiRoll(times, num):
+    totalRolls = []
+    for i in range(0, times):
+        if num <= 120:
+            rolls = [random.randint(1, num)]
+            for roll in rolls:
+                totalRolls.append(roll)
+        else:
+            print('Please pick a number between 2 and 120.') 
+    return totalRolls
+
 class Character():
     
-    def multiRoll(self, times, num):
-        totalRolls = []
-        for i in range(0, times):
-            if num <= 120:
-                rolls = [random.randint(1, num)]
-                for roll in rolls:
-                    totalRolls.append(roll)
-                #print(rolls)
-            else:
-                print('Please pick a number between 2 and 120.') 
-        return totalRolls
 
     def whichRace(self):
         self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome']
@@ -28,7 +28,7 @@ class Character():
         self.abilities = {'Strength': 0, 'Dexterity': 0, 'Constitution': 0, 'Intelligence': 0, 'Wisdom': 0, 'Charisma':0}
         self.newAbilities = {}
         for ability, score  in self.abilities.items():
-            self.result = self.multiRoll(4, 6)
+            self.result = multiRoll(4, 6)
             self.result.sort()
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
@@ -66,3 +66,5 @@ class Character():
 newChar = Character()
 
 newChar.characterSheet()
+
+print(multiRoll(3, 6))
