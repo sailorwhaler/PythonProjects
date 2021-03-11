@@ -67,4 +67,3 @@ newChar = Character()
 
 newChar.characterSheet()
 
-print(multiRoll(3, 6))
