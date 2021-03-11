@@ -15,12 +15,16 @@ class Character():
     
 
     def whichRace(self):
-        self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome']
+        self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
+        'Orc of Exandria', 'Leonin', 'Satyr', 'Aarakocra', 'Genasi', 'Goliath', 'Aasimar', 'Bugbear', 'Firbolg', 'Goblin',
+        'Hobgoblin', 'Kenku', 'Kobold', 'Lizardfolk', 'Orc', 'Tabaxi', 'Triton', 'Yuan-ti Pureblood', 'Feral Tiefling', 
+        'Tortle', 'Changeling', 'Kalashtar', 'Orc of Eberron', 'Shifter', 'Warforged', 'Gith', 'Centaur', 'Loxodon', 'Minotaur',
+        'Simic Hybrid', 'Vedalken', 'Verdan', 'Locathah', 'Grung']
         self.randomRace = random.choice(self.allRaces)
         return self.randomRace
 
     def whichClass(self):
-        self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer']
+        self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
         return self.randomClass
 
@@ -58,7 +62,7 @@ class Character():
     def characterSheet(self):
         self.whichClass()
         self.whichRace()
-        print(f"You should play a {self.randomRace} {self.randomClass}")
+        print(f"You should play a(n) {self.randomRace} {self.randomClass}")
         self.modifier()
         self.hitPoints()
 
