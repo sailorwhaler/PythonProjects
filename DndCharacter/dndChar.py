@@ -1,4 +1,5 @@
 import random
+featureList = []
 
 def multiRoll(times, num):
     totalRolls = []
@@ -11,8 +12,22 @@ def multiRoll(times, num):
             print('Please pick a number between 2 and 120.') 
     return totalRolls
 
-class Character():
+class Stats: 
+    strength = 0
+    dex = 0
+    con = 0
+    intel = 0
+    wis = 0
+    char = 0
+
+class RacialFeatures:
+    raceName = " "
+    RaceBonus = Stats()
+
     
+  
+
+class Character:
 
     def whichRace(self):
         self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
@@ -66,7 +81,11 @@ class Character():
         self.modifier()
         self.hitPoints()
 
-        
+feat = RacialFeatures()
+feat.raceName = "Human"
+feat.strMod = 1
+featureList.append(feat)
+
 newChar = Character()
 
 newChar.characterSheet()
