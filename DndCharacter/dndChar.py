@@ -1,4 +1,4 @@
-import random
+import random, RaceFeatures
 
 def multiRoll(times, num):
     totalRolls = []
@@ -61,9 +61,9 @@ class Character:
 
     @property
     def characterSheet(self):
-        self.whichClass()
+        RaceFeatures.RacialFeatures.match(self)
         self.whichRace()
-        print(f"You should play a(n) {self.randomRace} {self.randomClass}")
+        #print(f"You should play a(n) {self.randomRace} {self.randomClass}")
         self.modifier()
         self.hitPoints()
 
