@@ -61,7 +61,7 @@ class Character:
 
     @property
     def characterSheet(self):
-        RaceFeatures.RacialFeatures.match(self)
+        RaceFeatures.RacialFeatures.test(self)
         self.whichRace()
         #print(f"You should play a(n) {self.randomRace} {self.randomClass}")
         self.modifier()
@@ -72,4 +72,3 @@ class Character:
 newChar = Character()
 
 newChar.characterSheet
-

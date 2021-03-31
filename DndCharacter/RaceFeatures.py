@@ -1,14 +1,15 @@
 import random
 featureList = []
+testList = []
 
-
-raceName = ('Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome')
-RaceBonus = ({'str': 1, 'dex': 1, 'con': 1, 'int': 1, 'wis': 1, 'char': 1}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0},
+raceName = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome']
+RaceBonus = [{'str': 1, 'dex': 1, 'con': 1, 'int': 1, 'wis': 1, 'char': 1}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0},
 {'str': 0, 'dex': 0, 'con': 0, 'int': 1, 'wis': 0, 'char': 2}, {'str': 2, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 1}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 0, 'char': 0}, 
-{'str': 0, 'dex': 0, 'con': 0, 'int': 2, 'wis': 0, 'char': 0})
+{'str': 0, 'dex': 0, 'con': 0, 'int': 2, 'wis': 0, 'char': 0}]
 
 class RacialFeatures:
 
+    #A function that creates a string containing race and bonuses for that race to a list: featureList and then prints a random string from said list. 
     def match(self):
         #Add Humans with ability modifiers for that race
         race = 'Human'
@@ -55,3 +56,13 @@ class RacialFeatures:
         bonus = 'str: 0, dex: 0, con: 0, int: 2, wis: 0, char: 0'
         featureList.append(f'You should play a {race}. You will add {bonus} to your ability scores.')
         print(random.choice(featureList))
+
+    #A function that pulls from tuples to create a list of races and bonus ability scores which is then randomized.
+    def test(self):
+        while len(raceName) > 0 and len(RaceBonus) > 0 :
+            #testList.append(raceName.pop(-1))
+            #testList.append(RaceBonus.pop(-1))
+            race = raceName.pop(-1)
+            bonus = RaceBonus.pop(-1)
+            testList.append(f'You should play a {race}. You will add {bonus} to your ability scores.')
+        print(random.choice(testList))
