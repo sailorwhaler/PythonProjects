@@ -2,10 +2,23 @@ import random
 featureList = []
 testList = []
 
-raceName = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome']
+raceName = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
+        'Orc of Exandria', 'Leonin', 'Satyr', 'Aarakocra', 'Genasi', 'Goliath', 'Aasimar', 'Bugbear', 'Firbolg', 'Goblin',
+        'Hobgoblin', 'Kenku', 'Kobold', 'Lizardfolk', 'Orc', 'Tabaxi', 'Triton', 'Yuan-ti Pureblood', 'Feral Tiefling', 
+        'Tortle', 'Changeling', 'Kalashtar', 'Orc of Eberron', 'Shifter', 'Warforged', 'Gith', 'Centaur', 'Loxodon', 'Minotaur',
+        'Simic Hybrid', 'Vedalken', 'Verdan', 'Locathah', 'Grung']
+        
 RaceBonus = [{'str': 1, 'dex': 1, 'con': 1, 'int': 1, 'wis': 1, 'char': 1}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0},
 {'str': 0, 'dex': 0, 'con': 0, 'int': 1, 'wis': 0, 'char': 2}, {'str': 2, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 1}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 0, 'char': 0}, 
-{'str': 0, 'dex': 0, 'con': 0, 'int': 2, 'wis': 0, 'char': 0}]
+{'str': 0, 'dex': 0, 'con': 0, 'int': 2, 'wis': 0, 'char': 0}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 1, 'dex': 0, 'con': 2, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 1, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, 
+{'str':0 , 'dex': 2, 'con': 0, 'int': 0, 'wis': 1, 'char': 0}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, {'str': 2, 'dex': 1, 'con': 0, 'int': 0, 'wis': 0, 'char': 0},
+{'str': 1, 'dex': 0, 'con': 0, 'int': 0, 'wis': 2, 'char': 0}, {'str': 0, 'dex': 2, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 1, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 1, 'char': 0}, 
+{'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 1, 'char': 0}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 2, 'con': 0, 'int': 0, 'wis': 0, 'char': 1}, 
+{'str': 1, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 1}, {'str': 1, 'dex': 0, 'con': 0, 'int': 1, 'wis': 0, 'char': 2}, {'str': 0, 'dex': 2, 'con': 0, 'int': 1, 'wis': 0, 'char': 0}, {'str': 2, 'dex': 0, 'con': 0, 'int': 0, 'wis': 1, 'char': 0}, 
+{'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 2}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 2, 'char': 1}, {'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, 
+{'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 1, 'wis': 0, 'char': 0},{'str': 2, 'dex': 0, 'con': 0, 'int': 0, 'wis': 1, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 1, 'char': 0}, 
+{'str': 2, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 2, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 0, 'con': 0, 'int': 2, 'wis': 1, 'char': 0}, {'str': 0, 'dex': 0, 'con': 1, 'int': 0, 'wis': 0, 'char': 2}, 
+{'str': 2, 'dex': 1, 'con': 0, 'int': 0, 'wis': 0, 'char': 0}, {'str': 0, 'dex': 2, 'con': 1, 'int': 0, 'wis': 0, 'char': 0}]
 
 class RacialFeatures:
 
