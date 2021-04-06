@@ -14,15 +14,6 @@ def multiRoll(times, num):
 
 class Character:
 
-    def whichRace(self):
-        self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
-        'Orc of Exandria', 'Leonin', 'Satyr', 'Aarakocra', 'Genasi', 'Goliath', 'Aasimar', 'Bugbear', 'Firbolg', 'Goblin',
-        'Hobgoblin', 'Kenku', 'Kobold', 'Lizardfolk', 'Orc', 'Tabaxi', 'Triton', 'Yuan-ti Pureblood', 'Feral Tiefling', 
-        'Tortle', 'Changeling', 'Kalashtar', 'Orc of Eberron', 'Shifter', 'Warforged', 'Gith', 'Centaur', 'Loxodon', 'Minotaur',
-        'Simic Hybrid', 'Vedalken', 'Verdan', 'Locathah', 'Grung']
-        self.randomRace = random.choice(self.allRaces)
-        return self.randomRace
-
     def whichClass(self):
         self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
@@ -61,9 +52,7 @@ class Character:
 
     @property
     def characterSheet(self):
-        RaceFeatures.RacialFeatures.test(self)
-        self.whichRace()
-        #print(f"You should play a(n) {self.randomRace} {self.randomClass}")
+        RaceFeatures.RacialFeatures.attributes(self)
         self.modifier()
         self.hitPoints()
 
