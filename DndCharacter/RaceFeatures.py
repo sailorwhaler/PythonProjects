@@ -38,8 +38,17 @@ class RacialFeatures:
         self.choice = random.choice(featureList)
         print(self.choice)
 
+    @property
     def darkvision(self):
-       pass
-    
+       self.attributes()
+       for race in self.choice:
+           if race in HasDarkvision:
+               print('You have darkvision!')
+           else:
+                print('You don\'t have darkvision.')
+                break
+            
+
+
 feat = RacialFeatures()
-feat.darkvision()
+feat.darkvision

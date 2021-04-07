@@ -17,7 +17,7 @@ class Character:
     def whichClass(self):
         self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
-        return self.randomClass
+        print(f'Maybe a {self.randomClass}?')
 
     def abilityScores(self):
         self.abilities = {'Strength': 0, 'Dexterity': 0, 'Constitution': 0, 'Intelligence': 0, 'Wisdom': 0, 'Charisma':0}
@@ -27,7 +27,6 @@ class Character:
             self.result.sort()
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
-            #return totalScore
             self.abilities.update({ability:totalScore})
             print(f"Your {ability} score is " + str(totalScore))
     
@@ -52,7 +51,8 @@ class Character:
 
     @property
     def characterSheet(self):
-        RaceFeatures.RacialFeatures.attributes(self)
+        RaceFeatures.RacialFeatures.darkvision
+        self.whichClass()
         self.modifier()
         self.hitPoints()
 
