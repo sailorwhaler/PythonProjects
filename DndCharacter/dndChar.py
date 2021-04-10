@@ -1,4 +1,4 @@
-import random
+import random, RaceFeatures
 
 def multiRoll(times, num):
     totalRolls = []
@@ -13,21 +13,13 @@ def multiRoll(times, num):
 
     
 class Character():
-    
 
-    def whichRace(self):
-        self.allRaces = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
-        'Orc of Exandria', 'Leonin', 'Satyr', 'Aarakocra', 'Genasi', 'Goliath', 'Aasimar', 'Bugbear', 'Firbolg', 'Goblin',
-        'Hobgoblin', 'Kenku', 'Kobold', 'Lizardfolk', 'Orc', 'Tabaxi', 'Triton', 'Yuan-ti Pureblood', 'Feral Tiefling', 
-        'Tortle', 'Changeling', 'Kalashtar', 'Orc of Eberron', 'Shifter', 'Warforged', 'Gith', 'Centaur', 'Loxodon', 'Minotaur',
-        'Simic Hybrid', 'Vedalken', 'Verdan', 'Locathah', 'Grung']
-        self.randomRace = random.choice(self.allRaces)
-        return self.randomRace
+class Character:
 
     def whichClass(self):
         self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
-        return self.randomClass
+        print(f'Maybe a {self.randomClass}?')
 
     def abilityScores(self):
         self.abilities = {'Strength': 0, 'Dexterity': 0, 'Constitution': 0, 'Intelligence': 0, 'Wisdom': 0, 'Charisma':0}
@@ -37,7 +29,6 @@ class Character():
             self.result.sort()
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
-            #return totalScore
             self.abilities.update({ability:totalScore})
             print(f"Your {ability} score is " + str(totalScore))
     
@@ -60,15 +51,17 @@ class Character():
         HP = self.mods['Constitution'] + 10
         print(f"You should start with {HP} hit points.")
 
+    @property
     def characterSheet(self):
+        RaceFeatures.RacialFeatures.darkvision
         self.whichClass()
         self.whichRace()
         print(f"You should play a(n) {self.randomRace} {self.randomClass}")
         self.modifier()
         self.hitPoints()
 
-        
+
+
 newChar = Character()
 
-newChar.characterSheet()
-
+newChar.characterSheet
