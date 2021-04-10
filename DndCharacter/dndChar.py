@@ -12,7 +12,6 @@ def multiRoll(times, num):
     return totalRolls
 
     
-class Character():
 
 class Character:
 
