@@ -1,20 +1,17 @@
 import asyncio, os, discord
-from threading import Timer
 from kasa import Discover, SmartPlug
-from discord.ext import commands
+from discord.ext import commands, tasks
 from dotenv import load_dotenv
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix='!', intents=intents)
-
+client = discord.Client(intents=intents)
 
 
 #Load Discord server info
 load_dotenv()
 token = os.getenv('DiscordToken')
 GUILD = os.getenv('DiscordGuild')
-client = discord.Client(intents=intents)
-
 
 
 #Discover Kasa plug
@@ -24,25 +21,30 @@ for addr, dev in device.items():
 
 #Update plug
 plug = SmartPlug(addr)
-asyncio.run(plug.update())
-#print(plug.is_on)
 
-def timeryeet():
-    asyncio.run(TimerHandler())
 
 @bot.event
+async def on_ready():
+    print(f'{bot.user.name} has connected ')
+    TimerHandler.start()
+
+
+@tasks.loop(minutes=2)
 async def TimerHandler():
     print('timer triggered')   
     user = bot.get_user(249956665347145728)
     print(user)
+    
+    await plug.update()
+    
     if plug.is_on == True:
+        print('plug is on')
         await user.create_dm()
         await user.dm_channel.send(
             f'Good morning {user.display_name}'
     )
+    else:
+        print('plug is off')
 
-    
-t = Timer(5.0, timeryeet)
-t.start()
 
 bot.run(token)
