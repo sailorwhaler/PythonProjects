@@ -54,8 +54,6 @@ class Character:
     def characterSheet(self):
         RaceFeatures.RacialFeatures.darkvision
         self.whichClass()
-        self.whichRace()
-        print(f"You should play a(n) {self.randomRace} {self.randomClass}")
         self.modifier()
         self.hitPoints()
 
