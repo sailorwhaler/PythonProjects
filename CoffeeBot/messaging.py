@@ -15,12 +15,14 @@ GUILD = os.getenv('DiscordGuild')
 
 
 #Discover Kasa plug
-device = asyncio.run(Discover.discover())
-for addr, dev in device.items():
-    asyncio.run(dev.update())
-
+#device = asyncio.run(Discover.discover())
+#addr = ""
+#for addr, dev in device.items():
+    #asyncio.run(dev.update())
+    #print(f'addr = {addr} dev = {dev}')
+    
 #Update plug
-plug = SmartPlug(addr)
+plug = SmartPlug("192.168.1.4")
 
 
 @bot.event
