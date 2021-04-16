@@ -1,4 +1,4 @@
-import random
+import random 
 featureList = []
 
 raceName = ['Human', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling', 'Dragonborn', 'Half-Orc', 'Dwarf', 'Gnome',
@@ -36,19 +36,15 @@ class RacialFeatures:
                 speed = 30
             featureList.append(f'You should play a(n) {race}. You will add {bonus} to your ability scores. Your movement speed will be {speed}.')
         self.choice = random.choice(featureList)
-        print(self.choice)
+        return self.choice
 
-    @property
-    def darkvision(self):
-       self.attributes()
-       for race in self.choice:
-           if race in HasDarkvision:
-               print('You have darkvision!')
-           else:
-                print('You don\'t have darkvision.')
-                break
-            
+    #@property
+    #def darkvision(self):
+        #self.attributes()
+        for race in self.choice:
+            if race in HasDarkvision:
+                return f'{self.choice} You have darkvision!'
+            else:
+                 return f'{self.choice} You don\'t have darkvision.'
+                 break
 
-
-feat = RacialFeatures()
-feat.darkvision

@@ -1,4 +1,5 @@
 import random, RaceFeatures
+import tkinter as tk
 
 def multiRoll(times, num):
     totalRolls = []
@@ -18,7 +19,7 @@ class Character:
     def whichClass(self):
         self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
-        print(f'Maybe a {self.randomClass}?')
+        ClassEnt.insert('0', f'Maybe a {self.randomClass}?')
 
     def abilityScores(self):
         self.abilities = {'Strength': 0, 'Dexterity': 0, 'Constitution': 0, 'Intelligence': 0, 'Wisdom': 0, 'Charisma':0}
@@ -29,7 +30,7 @@ class Character:
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
             self.abilities.update({ability:totalScore})
-            print(f"Your {ability} score is " + str(totalScore))
+            EntStats.insert('0', f"Your {ability} score is " + str(totalScore))
     
         
     def modifier(self):
@@ -43,22 +44,57 @@ class Character:
                 mod = int(mod - .5)
             else:
                 mod = int(mod)
-            print(f"The modifier for your {ability} score is {mod}")
+            StatsEnt.insert('0', f"The modifier for your {ability} score is {mod}. ")
             self.mods.update({ability:mod})
 
     def hitPoints(self):
         HP = self.mods['Constitution'] + 10
-        print(f"You should start with {HP} hit points.")
+        HPEnt.insert('0', f"You should start with {HP} hit points.")
 
     @property
     def characterSheet(self):
-        RaceFeatures.RacialFeatures.darkvision
+        RaceEnt.insert('0', f'{RaceFeatures.RacialFeatures.attributes(self)}')
         self.whichClass()
         self.modifier()
         self.hitPoints()
+      
+
+window = tk.Tk()
+window.rowconfigure(0, minsize=500, weight=1)
+window.columnconfigure(6, minsize=500, weight=1)
+lblFr = tk.Frame(window, bg='red')
+
+
+lblRace = tk.Label(window, text='Race:')
+lblRace.grid(row=0, column=1, sticky='n')
+RaceEnt = tk.Entry()
+RaceEnt.grid(row=0, column=1,)
+
+lblClass = tk.Label(window, text='Class:')
+lblClass.grid(row=0, column=2, sticky='se')
+ClassEnt = tk.Entry()
+ClassEnt.grid(row=0, column=2)
+
+lblStats = tk.Label(window, text='Stats:')
+lblStats.grid(row=0, column=3, sticky='se')
+EntStats = tk.Entry()
+EntStats.grid(row=0, column=3)
+
+lblScores = tk.Label(window, text='Scores:' )
+lblScores.grid(row=0, column=4, sticky='se')
+StatsEnt = tk.Entry()
+StatsEnt.grid(row=0, column=4)
+
+lblHP = tk.Label(window, text='Hit Points:' )
+lblHP.grid(row=0, column=5, sticky='w')
+HPEnt = tk.Entry()
+HPEnt.grid(row=0, column=5)
+
+rollBtn = tk.Button(window, text='Roll me a character', command=Character.characterSheet)
+rollBtn.grid(row=0, column=0, sticky='nsew')
 
 
 
 newChar = Character()
-
 newChar.characterSheet
+window.mainloop()
