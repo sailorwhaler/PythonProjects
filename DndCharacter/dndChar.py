@@ -30,7 +30,7 @@ class Character:
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
             self.abilities.update({ability:totalScore})
-            EntStats.insert('0', f"Your {ability} score is " + str(totalScore))
+            EntStats.insert('0', f"Your {ability} score is " + str(totalScore)+". ")
     
         
     def modifier(self):
@@ -44,7 +44,7 @@ class Character:
                 mod = int(mod - .5)
             else:
                 mod = int(mod)
-            StatsEnt.insert('0', f"The modifier for your {ability} score is {mod}. ")
+            ScoresEnt.insert('0', f"The modifier for your {ability} score is {mod}. ")
             self.mods.update({ability:mod})
 
     def hitPoints(self):
@@ -58,6 +58,16 @@ class Character:
         self.modifier()
         self.hitPoints()
       
+def ReRoll(event):
+    newChar = Character()
+    newChar.characterSheet
+
+def Clear(event):
+    RaceEnt.delete('0', tk.END)
+    ClassEnt.delete('0', tk.END)
+    EntStats.delete('0', tk.END)
+    ScoresEnt.delete('0', tk.END)
+    HPEnt.delete('0', tk.END)
 
 window = tk.Tk()
 window.rowconfigure(0, minsize=500, weight=1)
@@ -82,19 +92,22 @@ EntStats.grid(row=0, column=3)
 
 lblScores = tk.Label(window, text='Scores:' )
 lblScores.grid(row=0, column=4, sticky='se')
-StatsEnt = tk.Entry()
-StatsEnt.grid(row=0, column=4)
+ScoresEnt = tk.Entry()
+ScoresEnt.grid(row=0, column=4)
 
 lblHP = tk.Label(window, text='Hit Points:' )
 lblHP.grid(row=0, column=5, sticky='w')
 HPEnt = tk.Entry()
 HPEnt.grid(row=0, column=5)
 
-rollBtn = tk.Button(window, text='Roll me a character', command=Character.characterSheet)
+rollBtn = tk.Button(window, text='Roll me a character')
+#againbtn = tk.Button(window, text='Reroll!!')
+#againbtn.bind('<Button-2>', Clear)
+#againbtn.grid(row=0, column=1, sticky='nsew')
+rollBtn.bind('<Button-1>', Clear)
+rollBtn.bind('<ButtonRelease>', ReRoll)
 rollBtn.grid(row=0, column=0, sticky='nsew')
 
 
 
-newChar = Character()
-newChar.characterSheet
 window.mainloop()
