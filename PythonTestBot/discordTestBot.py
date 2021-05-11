@@ -3,12 +3,9 @@ import discord
 from discord.ext import commands
 from dotenv import load_dotenv
 import random
-import re
 intents = discord.Intents.default()
 intents.members = True
 bot = commands.Bot(command_prefix='~', intents=intents)
-
-exclude = re.compile('\blol')
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -60,17 +57,9 @@ async def uwuify(ctx):
     messageID = ctx.message.reference.message_id
     message = await ctx.channel.fetch_message(messageID)
     newMessage = message.content #I'm a string
-    for word in exclude.split(newMessage):
-        print(word)
-        print(exclude.match(word))
-        if exclude.match(word) is None:
-        #if exclude.search(newMessage) != True:
-            edit = word.replace('r', 'w')
-            edit = word.replace('l', 'w')
-        
-    newest =  ''.join(edit)
-    print(newest)
-    await ctx.send(message.author.mention + ' ' + newest)
+    newMessage = newMessage.replace("r", "w")
+    newMessage = newMessage.replace("l", 'w')
+    await ctx.send("UwU" + message.author.mention + " " + newMessage)
     await ctx.message.delete()
 
 bot.run(TOKEN)
