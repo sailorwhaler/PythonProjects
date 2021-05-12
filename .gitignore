@@ -1,3 +1,4 @@
 PythonTestBot/.env
 .DS_Store
 CoffeeBot/.env
+.vscode
