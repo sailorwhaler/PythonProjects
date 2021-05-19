@@ -22,7 +22,7 @@ GUILD = os.getenv('DiscordGuild')
     #print(f'addr = {addr} dev = {dev}')
     
 #Update plug
-plug = SmartPlug("192.168.1.4")
+plug = SmartPlug("192.168.1.2")
 
 
 @bot.event
