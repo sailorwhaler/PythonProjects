@@ -19,7 +19,7 @@ class Character:
     def whichClass(self):
         self.allClasses = ['Barbarian', 'Bard', 'Warlock', 'Paladin', 'Cleric', 'Ranger', 'Fighter', 'Druid', 'Monk', 'Rogue', 'Sorcerer', 'Wizard', 'Artificer', 'Blood Hunter']
         self.randomClass = random.choice(self.allClasses)
-        ClassEnt.insert('0', f'Maybe a {self.randomClass}?')
+        CharTxt.insert(tk.END, f'\n Maybe a {self.randomClass}?')
 
     def abilityScores(self):
         self.abilities = {'Strength': 0, 'Dexterity': 0, 'Constitution': 0, 'Intelligence': 0, 'Wisdom': 0, 'Charisma':0}
@@ -30,7 +30,7 @@ class Character:
             highestScores = self.result[-3:]
             totalScore = sum(highestScores)
             self.abilities.update({ability:totalScore})
-            EntStats.insert('0', f"Your {ability} score is " + str(totalScore)+". ")
+            CharTxt.insert(tk.END, f"\n Your {ability} score is " + str(totalScore)+". ")
     
         
     def modifier(self):
@@ -44,16 +44,16 @@ class Character:
                 mod = int(mod - .5)
             else:
                 mod = int(mod)
-            ScoresEnt.insert('0', f"The modifier for your {ability} score is {mod}. ")
+            CharTxt.insert(tk.END, f"\n The modifier for your {ability} score is {mod}. ")
             self.mods.update({ability:mod})
 
     def hitPoints(self):
         HP = self.mods['Constitution'] + 10
-        HPEnt.insert('0', f"You should start with {HP} hit points.")
+        CharTxt.insert(tk.END, f"\n You should start with {HP} hit points.")
 
     @property
     def characterSheet(self):
-        RaceEnt.insert('0', f'{RaceFeatures.RacialFeatures.attributes(self)}')
+        CharTxt.insert('1.0', f'{RaceFeatures.RacialFeatures.attributes(self)}')
         self.whichClass()
         self.modifier()
         self.hitPoints()
@@ -63,48 +63,44 @@ def ReRoll(event):
     newChar.characterSheet
 
 def Clear(event):
-    RaceEnt.delete('0', tk.END)
-    ClassEnt.delete('0', tk.END)
-    EntStats.delete('0', tk.END)
-    ScoresEnt.delete('0', tk.END)
-    HPEnt.delete('0', tk.END)
+    CharTxt.delete('1.0', tk.END)
 
 window = tk.Tk()
-window.rowconfigure(0, minsize=500, weight=1)
-window.columnconfigure(6, minsize=500, weight=1)
-lblFr = tk.Frame(window, bg='red')
+window.rowconfigure(0, weight=1)
+window.columnconfigure(1, weight=1)
+window.title('Who\'s my Character?')
 
+lblFr = tk.Frame(master=window)
+lblFr.grid(row=0, column=1, sticky='w')
 
-lblRace = tk.Label(window, text='Race:')
-lblRace.grid(row=0, column=1, sticky='n')
-RaceEnt = tk.Entry()
-RaceEnt.grid(row=0, column=1,)
+TxtFr = tk.Frame(window)
+TxtFr.grid(row=0, column=1, sticky='e')
 
-lblClass = tk.Label(window, text='Class:')
-lblClass.grid(row=0, column=2, sticky='se')
-ClassEnt = tk.Entry()
-ClassEnt.grid(row=0, column=2)
+lblRace = tk.Label(lblFr, text="")
+lblRace.grid(row=0, column=1)
 
-lblStats = tk.Label(window, text='Stats:')
-lblStats.grid(row=0, column=3, sticky='se')
-EntStats = tk.Entry()
-EntStats.grid(row=0, column=3)
+#lblClass = tk.Label(lblFr, text='Class:')
+#lblClass.grid(row=1, column=1)
+CharTxt = tk.Text(TxtFr)
+CharTxt.grid(row=1, column=1)
 
-lblScores = tk.Label(window, text='Scores:' )
-lblScores.grid(row=0, column=4, sticky='se')
-ScoresEnt = tk.Entry()
-ScoresEnt.grid(row=0, column=4)
+#lblStats = tk.Label(lblFr, text='Stats:')
+#lblStats.grid(row=2, column=1)
+#ClassTxt = tk.Entry(EntFr)
+#EntTxt.grid(row=2, column=1)
 
-lblHP = tk.Label(window, text='Hit Points:' )
-lblHP.grid(row=0, column=5, sticky='w')
-HPEnt = tk.Entry()
-HPEnt.grid(row=0, column=5)
+#lblScores = tk.Label(lblFr, text='Scores:' )
+#lblScores.grid(row=3, column=1)
+#ScoresEnt = tk.Entry(EntFr)
+#ScoresEnt.grid(row=3, column=1)
+
+#lblHP = tk.Label(lblFr, text='Hit Points:' )
+#lblHP.grid(row=4, column=1)
+#HPEnt = tk.Entry(EntFr)
+#HPEnt.grid(row=4, column=1)
 
 rollBtn = tk.Button(window, text='Roll me a character')
-#againbtn = tk.Button(window, text='Reroll!!')
-#againbtn.bind('<Button-2>', Clear)
-#againbtn.grid(row=0, column=1, sticky='nsew')
-rollBtn.bind('<Button-1>', Clear)
+rollBtn.bind('<Button>',  Clear)
 rollBtn.bind('<ButtonRelease>', ReRoll)
 rollBtn.grid(row=0, column=0, sticky='nsew')
 
