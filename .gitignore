@@ -2,7 +2,4 @@ PythonTestBot/.env
 .DS_Store
 CoffeeBot/.env
 .vscode/settings.json
-JupyterNotebookProjects\InsuranceAnalysis\insurance.csv
-JupyterNotebookProjects\LifeExpectancyAndGDP\all_data.csv
-JupyterNotebookProjects\StateParkBiodiversity\observations.csv
-JupyterNotebookProjects\StateParkBiodiversity\species_info.csv
+*.csv 
