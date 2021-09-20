@@ -10,5 +10,5 @@ A repository dedicated to learning Git and Python.
 * Focus on projects that are enjoyable and useful
 
 ## Project Ideas:
-* Update Discord bot to work with Docker
-* Coffee Alert System with Kasa
+* ~~Update Discord bot to work with Docker~~
+* ~~Coffee Alert System with Kasa~~
